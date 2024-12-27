@@ -32,10 +32,16 @@ jobs:
            path: |
             dist
             package.json   
-            
+
   deploy:
     needs: build
     runs-on: ubuntu-latest
     steps:
+      - name: Get build Artifact
+        uses: actions/download-artifact@v3
+        with:
+          name: dist-files
+      - name: Output Contents show
+        run: ls
       - name: Deploy
         run: echo "Deploying..."
